@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cronômetro</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .fundo{
+            background-image: linear-gradient(270deg,white, rgb(226, 124, 213));
+            height: 100vh;
+            color: #fff;
+            font-family: arial;
+            text-align: center;
+
+        }
+        .Cronometro{
+            position: absolute;
+            background-color: rgb(218, 136, 190);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            border-radius: 15px;
+            padding: 15px;
+            font-size: 15px;
+        }
+        .botao-iniciar{
+            width: 98px;
+            height: 60px;
+            background-color: rgba(165, 211, 135, 0.801);
+            font-size: 25px;
+            cursor: pointer;
+            border:white ;
+            color: white;
+        }
+        .botao-parar{
+            width: 98px;
+            height: 60px;
+            background-color: rgba(245, 43, 43, 0.521);
+            font-size: 25px;
+            cursor: pointer;
+            border:white ;
+            color: white;
+        }
+        .botao-pausar{
+            width: 98px;
+            height: 60px;
+            background-color: rgba(238, 241, 62, 0.801);
+            font-size: 25px;
+            cursor: pointer;
+            border:white ;
+            color: white;
+        }
+
+
+        .botao-pausar:hover{
+            background-color: rgb(225, 128, 238);   
+        }
+        .botao-parar:hover{
+            background-color: rgb(225, 128, 238);   
+        }
+        .botao-iniciar:hover{
+            background-color: rgb(225, 128, 238);   
+        }
+
+        #resultado{
+            
+            width: 263px;
+            height: 30px;
+            margin: 5px;
+            font-size: 50px;
+            color: rgb(99, 4, 59);
+            text-align: center;
+            padding: 20px;
+        }
+
+    
+
+    </style>
+
+</head>
+<body>
+    <div class="fundo">
+        <h1>Sara Cristina<h1>
+        <div class="Cronometro">
+            <h1>Cronômetro</h1>
+            <p id="resultado">00:00:00</p>
+            <table>
+                <tr>
+                    <td><button onclick="start();" class="botao-iniciar" >Iniciar</button></td>
+                    <td><button onclick="pause();" class="botao-parar" >Pausar</button></td>
+                    <td><button onclick="stop();" class="botao-pausar" >Parar</button></td>
+                    <table>
+        
+    <script>
+        var hh = 0;
+var mm = 0;
+var ss = 0;
+
+var tempo = 1000;
+var cron;
+
+function start(){
+
+    cron = setInterval(() => {timer();}, tempo);
+}
+function pause(){
+    clearInterval(cron);
+}
+function stop(){
+    clearInterval(cron);
+    hh = 0;
+    mm = 0;
+    ss = 0;
+
+    document.getElementById('resultado').innerText = '00:00:00'
+}
+function timer(){
+
+    ss++;
+    if(ss == 60) {
+        ss = 0;
+        mm++;
+
+        if(mm == 60){
+            mm = 0;
+            hh++;
+        }
+    }
+
+
+
+    var format = (hh < 10 ? '0'+ hh : hh) + ':' + (mm < 10 ? '0'+ mm : mm) + ':' + (ss < 10 ? '0' + ss : ss);
+    document.getElementById('resultado').innerText = format;
+
+}
+    </script>
+
+    
+</body>
+</html>
